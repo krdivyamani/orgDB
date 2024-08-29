@@ -9,6 +9,7 @@ import DeleteDept from "./DeleteDept.jsx";
 import DeleteEmp from "./DeleteEmp.jsx";
 import UpdateEmp from "./UpdateEmp.jsx";
 import UpdateDept from "./UpdateDept.jsx";
+import DeptEmpReport from "./DeptEmpReport.jsx";
 
 function App() {
   //const deptId = some ID int type;
