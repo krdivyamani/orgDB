@@ -12,7 +12,7 @@ router = APIRouter(
 # Get all employees
 
 
-@router.get(response_model=List[schemas.EmpResponse])
+@router.get("/", response_model=List[schemas.EmpResponse])
 def get_emp(db: Session = Depends(get_db)):
     emp = db.query(models.Employee).all()
     return emp
