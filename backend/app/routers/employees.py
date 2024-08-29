@@ -37,9 +37,26 @@ def get_emp(id: int, db: Session = Depends(get_db)):
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.EmpResponse)
 def create_emp(emp: schemas.EmpCreate, db: Session = Depends(get_db)):
 
-    new_emp = models.User(**emp.model_dump())
+    new_emp = models.Employee(**emp.model_dump())
     db.add(new_emp)
     db.commit()
     db.refresh(new_emp)
 
     return new_emp
+
+# Delete an Employee with specific ID
+
+@router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_emp(id: int, db: Session = Depends(get_db)):
+    emp_query = db.query(models.Employee).filter(models.emp.id == id)
+
+    emp = emp_query.first()
+
+    if emp == None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"Employee with id: {id} does not exist")
+
+    emp_query.delete(synchronize_session=False)
+    db.commit()
+
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
