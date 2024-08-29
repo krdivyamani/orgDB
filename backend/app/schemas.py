@@ -1,5 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from datetime import datetime
+from typing import List
 
 
 class BasicStructure(BaseModel):
@@ -38,3 +39,11 @@ class EmpResponse(BaseModel):
 
     class Config:
         orm_mode = True
+
+class DeptEmpReport(BaseModel):
+    id: int
+    name: str
+    created_at: datetime
+    employees: List[EmpResponse] = []
+    class Config:
+        orm_mode=True
