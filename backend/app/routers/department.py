@@ -22,7 +22,7 @@ def get_dept(db: Session = Depends(get_db)):
 # Get Dept and Emp report using Join
 
 
-@router.get("/")
+@router.get("/reports")
 def get_report(db: Session = Depends(get_db)):
     deptEmpReport = db.query(models.Dept).join(models.Employee,
                                                models.Dept.id == models.Employee.deptID, isouter=True)
