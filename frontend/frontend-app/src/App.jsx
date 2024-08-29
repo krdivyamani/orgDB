@@ -5,6 +5,10 @@ import DeptById from "./DeptById.jsx";
 import EmpById from "./EmpById.jsx";
 import AddDept from "./AddDept.jsx";
 import AddEmp from "./AddEmp.jsx";
+import DeleteDept from "./DeleteDept.jsx";
+import DeleteEmp from "./DeleteEmp.jsx";
+import UpdateEmp from "./UpdateEmp.jsx";
+import UpdateDept from "./UpdateDept.jsx";
 
 function App() {
   //const deptId = some ID int type;

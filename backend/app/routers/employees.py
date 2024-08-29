@@ -60,3 +60,22 @@ def delete_emp(id: int, db: Session = Depends(get_db)):
     db.commit()
 
     return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+# Update an employee with specific ID
+
+
+@router.put("/{id}", response_model=schemas.EmpResponse)
+def update_emp(id: int, updated_emp: schemas.EmpCreate, db: Session = Depends(get_db)):
+    emp_query = db.query(models.Employee).filter(models.Employee.id == id)
+
+    emp = emp_query.first()
+
+    if emp == None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"Employee with id: {id} does not exist")
+
+    emp_query.update(updated_emp.model_dump(), synchronize_session=False)
+
+    db.commit()
+
+    return emp_query.first()
