@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-function DeptById({ id }) {
-  const [department, setDepartment] = useState([]);
+function EmpById({ id }) {
+  const [employee, setEmployee] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -10,9 +10,9 @@ function DeptById({ id }) {
   useEffect(() => {
     if (id) {
       axios
-        .get(`localhost/departments/${id}`)
+        .get(`localhost/employees/${id}`)
         .then((response) => {
-          setDepartment(response.data);
+          setEmployee(response.data);
           setLoading(false);
         })
         .catch((error) => {
@@ -27,24 +27,33 @@ function DeptById({ id }) {
 
   return (
     <div>
-      <h1>Department Details</h1>
-      {department ? (
+      <h1>Employee Details</h1>
+      {employee ? (
         <div>
           <p>
-            <strong>ID:</strong> {department.id}
+            <strong>ID:</strong> {employee.id}
           </p>
           <p>
-            <strong>Name:</strong> {department.name}
+            <strong>Name:</strong> {employee.name}
           </p>
           <p>
-            <strong>Created At:</strong> {department.created_at}
+            <strong>Age:</strong> {employee.age}
+          </p>
+          <p>
+            <strong>Email:</strong> {employee.Email}
+          </p>
+          <p>
+            <strong>Dept ID:</strong> {employee.deptID}
+          </p>
+          <p>
+            <strong>Created At:</strong> {employee.created_at}
           </p>
         </div>
       ) : (
-        <p>No department found with ID: {id}</p>
+        <p>No Employee found with ID: {id}</p>
       )}
     </div>
   );
 }
 
-export default DeptById;
+export default EmpById;
