@@ -1,15 +1,13 @@
-import './App.css'
-import EmployeeList from './EmployeeList';
-
+import "./App.css";
+import EmployeeList from "./EmployeeList";
+import DepartmentList from "./DepartmentList.jsx";
 
 function App() {
-
   return (
     <>
-    <EmployeeList />
+      <EmployeeList />
     </>
-
-  )
+  );
 }
 
 export default App;
